@@ -39,6 +39,8 @@
 
   </dependencies>
   <build>
+  	<sourceDirectory>src</sourceDirectory>
+    
     <finalName>webappRunnerSample</finalName>
     <plugins>
         
