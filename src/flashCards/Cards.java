@@ -133,8 +133,8 @@ public class Cards {
 	        
 	    	
 	    	
-	    	textStripper.setStartPage(page-1);
-			textStripper.setEndPage(page-1);
+	    	textStripper.setStartPage(page);
+			textStripper.setEndPage(page);
 			resText = textStripper.getText(pdf).trim();
 			
 //	    	resText = text.toString().trim();
@@ -154,8 +154,8 @@ public class Cards {
 	        //String n = sc.next();
 	        
 	        
-	        textStripper.setStartPage(page);
-			textStripper.setEndPage(page);
+	        textStripper.setStartPage(page+1);
+			textStripper.setEndPage(page+1);
 			
 			resText = textStripper.getText(pdf).trim();
 	        text = new StringBuilder(1024);
