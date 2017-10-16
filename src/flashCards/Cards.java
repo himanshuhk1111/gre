@@ -1,22 +1,16 @@
 package flashCards;
 
+import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Scanner;
-import java.util.concurrent.SynchronousQueue;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.text.PDFTextStripper;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
-
-import com.snowtide.PDF;
-import com.snowtide.pdf.Document;
-import com.snowtide.pdf.OutputTarget;
-import com.sun.org.apache.bcel.internal.util.ClassPath;
 
 
 
@@ -100,7 +94,10 @@ public class Cards {
 		//System.out.println(ClassPath.getClassPath());
 //		System.out.println();
 		//pdfFilePath = "500 Essential Words GRE Vocabulary Flash Cards.pdf";
-		Document pdf = PDF.open(pdfFilePath);
+		
+		PDDocument pdf = PDDocument.load(new File(pdfFilePath));
+		PDFTextStripper textStripper=new PDFTextStripper();
+		
 		
 		cardBean card = new cardBean();
 		if(totalPages<=pageCount){
@@ -126,11 +123,21 @@ public class Cards {
         this.setPageCount(pageCount);
         done.add(page);
 		
+        
+        
 		try{
 			System.out.println(page);
 	    	StringBuilder text = new StringBuilder(1024);
-	    	pdf.getPage(page-1).pipe(new OutputTarget(text));
-	        resText = text.toString().trim();
+	    		
+//	    	pdf.getPage(page-1).pipe(new OutputTarget(text));
+	        
+	    	
+	    	
+	    	textStripper.setStartPage(page-1);
+			textStripper.setEndPage(page-1);
+			resText = textStripper.getText(pdf).trim();
+			
+//	    	resText = text.toString().trim();
 	        card.setPageNo(page);
 	        
 	        Scanner sc = new Scanner(resText);
@@ -146,8 +153,15 @@ public class Cards {
 	        System.out.println("--------------------------------------------------------------------------------------");
 	        //String n = sc.next();
 	        
+	        
+	        textStripper.setStartPage(page);
+			textStripper.setEndPage(page);
+			
+			resText = textStripper.getText(pdf).trim();
 	        text = new StringBuilder(1024);
-	        pdf.getPage(page).pipe(new OutputTarget(text));
+	        text.append(resText);
+	        
+//	        pdf.getPage(page).pipe(new OutputTarget(text));
 	        
 	        
 	        
