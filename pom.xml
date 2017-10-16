@@ -33,7 +33,7 @@
 	    <groupId>javax.servlet</groupId>
 	    <artifactId>javax.servlet-api</artifactId>
 	    <version>3.0.1</version>
-	    <scope>provided</scope>
+	    <scope>provided</scope> <!--this thing is to be done for heroku-->
 	</dependency>
     
 
@@ -64,6 +64,7 @@
       
 
 
+<!--this plugin is to be added for heroku-->
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-dependency-plugin</artifactId>
@@ -85,6 +86,9 @@
                 </execution>
             </executions>
         </plugin>
+<!--this plugin is to be added for heroku you can check the final file using run console in Heroku-->
+
+
     </plugins>
   </build>
 </project>

@@ -95,7 +95,7 @@ public class Cards {
 	}
 	
 	@SuppressWarnings("finally")
-	public String getCards(){
+	public String getCards() throws IOException{
 		//pdfFilePath = "D:/jatin/gre/500 Essential Words GRE Vocabulary Flash Cards.pdf";
 		//System.out.println(ClassPath.getClassPath());
 //		System.out.println();
@@ -151,6 +151,7 @@ public class Cards {
 	        
 	        
 	        
+	        
 	        int start = 0;
 	        int end = text.indexOf("Usage:");
 	        card.setDef(text.substring(start,end).trim());
@@ -183,6 +184,7 @@ public class Cards {
 			e.getMessage();
 		}
 		finally{
+			pdf.close();
 			return this.convertToJson(card);
 		}
 	}
