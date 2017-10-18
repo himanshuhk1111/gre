@@ -23,6 +23,9 @@ function flipCard(X){
 }
 
 function requestNextWord(){
+	$('#nxtCard').attr('disabled','disabled');
+	$('#nxtCard').css("cursor", "default");
+	
 	$.ajax({
 		  method:"GET",
 		  url: "CardsController",
@@ -46,6 +49,8 @@ function requestNextWord(){
 			$("#info").html(data.info);
 			$("#status").html(data.status);
 		}
+	$('#nxtCard').removeAttr('disabled');
+		
 	});
 }
 
