@@ -35,7 +35,8 @@ public class CardsController extends HttpServlet {
 		sess.setAttribute("wordCount", cards.getWordCount());
 		sess.setAttribute("pageCount", cards.getPageCount());
 		
-		PrintWriter out=response.getWriter();
+		response.setCharacterEncoding("UTF-8"); // so that encode string properly
+		PrintWriter out = response.getWriter();
 		out.print(ans);
 		
 	}

@@ -124,7 +124,7 @@ color:black;
 }
 
 .flashCard{
-	width: 40%;
+	width: 60%;
     padding: 40px;
     margin:auto;
 }
@@ -446,9 +446,26 @@ button:hover{
 }
 
 /* For Tablets */
-@media screen and (min-width: 540px) and (max-width: 780px) {
-    .view {
-        width: 600px;
+@media screen and (min-width: 540px) and (max-width: 750px) {
+    h1{
+    	font-size:35px;
+    }
+    
+    h2{
+    	font-size:27px;
+    }
+    h3{
+    	font-size:20px;
+    }
+    
+    h4{
+    	font-size:17px;
+    }
+	
+    .flashCard{
+		width: 95%;
+		padding:5px;
+		padding-bottom:15px;
     }
 }
 
