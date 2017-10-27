@@ -79,12 +79,12 @@ function requestWord(cid){
 			$("#status").html(data.status);
 		}
 	})
-	.error(function(){
+	.fail(function(){
 		console.log("error");
+		buttonEnable();
 	})
 	.always(function(){
 		console.log("Request Completed")
-		buttonEnable();
 	});
 }
 
