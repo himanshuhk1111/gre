@@ -40,7 +40,7 @@ function flipCard(X){
 function requestWord(cid){
 	$.ajax({
 		  method:"GET",
-		  async:false,
+		  //async:false,
 		  url: "CardsController",
 		  dataType:"json",
 		  data:{
@@ -78,6 +78,7 @@ function requestWord(cid){
 			$("#info").html(data.info);
 			$("#status").html(data.status);
 		}
+		buttonEnable();
 	});
 }
 
@@ -121,7 +122,7 @@ $("document").ready(function(){
 					flipCard("defination");
 			}, 1000);
 			
-			buttonEnable();
+			// buttonEnable();
 			
 		});
 
@@ -146,10 +147,7 @@ $("document").ready(function(){
 				$("#flashCards").addClass("rollInLeft");
 				if(vocab.hasClass("hideCard"))
 					flipCard("defination");
-			}, 500);
-			
-			buttonEnable();
-
+			}, 1000);
 		});
 	}
 	
