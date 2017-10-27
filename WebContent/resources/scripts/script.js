@@ -40,6 +40,7 @@ function flipCard(X){
 function requestWord(cid){
 	$.ajax({
 		  method:"GET",
+		  async:false,
 		  url: "CardsController",
 		  dataType:"json",
 		  data:{
