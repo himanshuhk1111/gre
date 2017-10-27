@@ -122,14 +122,10 @@ $("document").ready(function(){
 					flipCard("defination");
 			}, 1000);
 			
-			// buttonEnable();
-			
 		});
 
 		$("#prevCard").click(function(){
 			console.log("prevCard");
-			buttonDisable();
-
 			
 			$("#flashCards").removeClass("rollInRight");
 			$("#flashCards").removeClass("rollInLeft");	
@@ -138,8 +134,10 @@ $("document").ready(function(){
 			console.log(status);
 			
 			if(card>1)
+			{
+				buttonDisable();
 				requestWord(card-1);
-			
+			}
 				
 			setTimeout(function(){
 				$("#flashCards").removeClass("rollOutLeft");
