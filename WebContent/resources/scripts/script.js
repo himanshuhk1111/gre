@@ -78,6 +78,9 @@ function requestWord(cid){
 			$("#info").html(data.info);
 			$("#status").html(data.status);
 		}
+	})
+	.always(function(){
+		console.log("Request Completed")
 		buttonEnable();
 	});
 }
