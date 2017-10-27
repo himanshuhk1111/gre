@@ -146,7 +146,7 @@ $("document").ready(function(){
 				$("#flashCards").addClass("rollInLeft");
 				if(vocab.hasClass("hideCard"))
 					flipCard("defination");
-			}, 1000);
+			}, 500);
 			
 			buttonEnable();
 
