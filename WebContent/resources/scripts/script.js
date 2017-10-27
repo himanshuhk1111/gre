@@ -49,7 +49,7 @@ function requestWord(cid){
 		  //context: document.body
 	}).done(function(data) {
 		console.log(data.status);
-		console.log("here "+ card);
+		console.log(card);
 		if(data.status==false){
 			status = data.status;
 			card = card + 1 ;
@@ -78,6 +78,9 @@ function requestWord(cid){
 			$("#info").html(data.info);
 			$("#status").html(data.status);
 		}
+	})
+	.error(function(){
+		console.log("error");
 	})
 	.always(function(){
 		console.log("Request Completed")
