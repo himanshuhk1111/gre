@@ -1248,7 +1248,7 @@
 
 /* originally authored by Nick Pettit - https://github.com/nickpettit/glide */
 
-@keyframes rollIn {
+@keyframes rollInLeft {
   from {
     opacity: 0;
     transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, -120deg);
@@ -1260,13 +1260,30 @@
   }
 }
 
-.rollIn {
-  animation-name: rollIn;
+.rollInLeft {
+  animation-name: rollInLeft;
 }
+
+@keyframes rollInRight {
+  from {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, 120deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rollInRight {
+  animation-name: rollInRight;
+}
+
 
 /* originally authored by Nick Pettit - https://github.com/nickpettit/glide */
 
-@keyframes rollOut {
+@keyframes rollOutRight {
   from {
     opacity: 1;
   }
@@ -1277,8 +1294,23 @@
   }
 }
 
-.rollOut {
-  animation-name: rollOut;
+.rollOutRight {
+  animation-name: rollOutRight;
+}
+
+@keyframes rollOutLeft {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, -120deg);
+  }
+}
+
+.rollOutLeft {
+  animation-name: rollOutLeft;
 }
 
 @keyframes zoomIn {

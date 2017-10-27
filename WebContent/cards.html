@@ -13,13 +13,13 @@
 	<link rel="stylesheet" type="text/css" href="resources/css/style.css">
 	<link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="resources/css/animate.css"> 	
-	<title>Gre Flash Cards</title>
+	<title>Vocabulary</title>
 </head>
 <body class="container-fluid bg-grey">
 	<div class="">
 	<p class="space-30"></p>
 		<div class="row">
-			<div id="flashCards" class="text-center col-xs-12 col-sm-12 animated rollIn" style="margin:10px;">
+			<div id="flashCards" class="text-center col-xs-12 col-sm-12 animated rollInRight" style="margin-bottom:10px;">
 				<div id ="word" class="card flashCard animated fg-white bg-primary flipInX">
 					<h2 class="text-left" style="position:absolute;left:20px" id="cid"></h2>
 					<h1 id="name"></h1>
@@ -34,19 +34,18 @@
 					<h4 id="info"></h4>
 				</div>
 			</div>
-			<p class="space-30"></p>
-			<div class="col-xs-6 col-sm-6 text-right">
-				<button class="btn btn-lg btn-danger" id="flipBtn">Flip Card</button>
-			</div>
-			
-			<div class="col-xs-6 col-sm-6 text-left">
+		</div>
+		<div class="row">
+			<div class="col-sm-12 text-center">
+				<button class="btn btn-lg btn-success" id="prevCard">Previous Card</button>
+				<button class="btn btn-lg btn-danger" id="flipBtn">Flip</button>
 				<button class="btn btn-lg btn-success" id="nxtCard">Next Card</button>
 			</div>
 		</div>
-	<p class="space-10 text-center">
-		<a class="btn btn-sm btn-primary" href="/">Restart</a>
-	</p>
-	<p class="space-20"></p>
+		<p class="space-10"></p>	
+		<div class="row">
+			<div class="col-sm-12 text-center"><a class="btn btn-primary" href="/">Restart</a></div>
+		</div>
 	</div>
 </body>
 </html>

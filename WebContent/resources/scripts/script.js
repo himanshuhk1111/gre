@@ -2,6 +2,21 @@
  * 
  */
 
+var card = null;
+var status = null;
+
+function buttonDisable(){
+	$('#nxtCard').attr('disabled','disabled');
+	$('#nxtCard').css("cursor", "default");
+	$('#prevCard').attr('disabled','disabled');
+	$('#prevCard').css("cursor", "default");
+}
+
+function buttonEnable(){
+	$('#nxtCard').removeAttr('disabled');
+	$('#prevCard').removeAttr('disabled');
+}
+
 function flipCard(X){
 		//console.log("flipCard");
 		vocab = $("#word");
@@ -22,22 +37,35 @@ function flipCard(X){
 		}
 }
 
-function requestNextWord(){
-	$('#nxtCard').attr('disabled','disabled');
-	$('#nxtCard').css("cursor", "default");
-	
+function requestWord(cid){
 	$.ajax({
 		  method:"GET",
 		  url: "CardsController",
-		  dataType:"json"
+		  dataType:"json",
+		  data:{
+			  cid:cid
+		  }
 		  //context: document.body
 	}).done(function(data) {
 		console.log(data.status);
+		console.log("here "+ card);
 		if(data.status==false){
-			$("#word").html("<h1>You have Exhausted all Words</h1>");
-			$("#defination").html("<h1>You have Exhausted all Words</h1>");
+			status = data.status;
+			card = card + 1 ;
+			$("#name").html("You have Exhausted all Words or bad request");
+			$("#def").html("You have Exhausted all Words or bad request");
+			$("#pageNo").html("");
+			$("#cid").html("");
+			$("#type").html("");
+			$("#other").html("");
+			$("#usage").html("");
+			$("#relWords").html("");
+			$("#info").html("");
+			$("#status").html("");
 		}
 		else{
+			card = parseInt(data.cid);
+			status = data.status;
 			$("#pageNo").html("Page No. "+data.pageNo);
 			$("#cid").html(data.cid);
 			$("#name").html(data.word);
@@ -49,46 +77,79 @@ function requestNextWord(){
 			$("#info").html(data.info);
 			$("#status").html(data.status);
 		}
-	$('#nxtCard').removeAttr('disabled');
-		
 	});
 }
 
 $("document").ready(function(){
 	
-	vocab = $("#word");
-	defination = $("#defination");
-	requestNextWord();
-	
-	$("#flipBtn").click(function(){
+	x = location.pathname;
+	if(x.indexOf("/cards.html")!=-1){
+		vocab = $("#word");
+		defination = $("#defination");
+		requestWord(1);
 		
-		if(vocab.hasClass("hideCard"))
-		{
-			flipCard("defination");
-		}
-		else{
+		$("#flipBtn").click(function(){
 			
-			flipCard("vocab");
-		}
-			
-	});
-	
-	$("#nxtCard").click(function(){
-		console.log("NextCard");
-		
-		$("#flashCards").removeClass("rollIn");
-		$("#flashCards").addClass("rollOut");
-		
-		requestNextWord();
-		
-		setTimeout(function(){
-			$("#flashCards").removeClass("rollOut");
-			$("#flashCards").addClass("rollIn");
 			if(vocab.hasClass("hideCard"))
+			{
 				flipCard("defination");
-		}, 1000);
-	});
-	
-	
+			}
+			else{
+				
+				flipCard("vocab");
+			}
+				
+		});
+		
+		$("#nxtCard").click(function(){
+			buttonDisable();
+			
+			$("#flashCards").removeClass("rollInRight");
+			$("#flashCards").removeClass("rollInLeft");	
+			$("#flashCards").addClass("rollOutLeft");
+			
+			console.log(status);
+			if(status!="false")
+				requestWord(card+1);
+			
+			setTimeout(function(){
+				$("#flashCards").removeClass("rollOutLeft");
+				$("#flashCards").removeClass("rollOutRight");
+				$("#flashCards").addClass("rollInRight");
+				if(vocab.hasClass("hideCard"))
+					flipCard("defination");
+			}, 1000);
+			
+			buttonEnable();
+			
+		});
+
+		$("#prevCard").click(function(){
+			console.log("prevCard");
+			buttonDisable();
+
+			
+			$("#flashCards").removeClass("rollInRight");
+			$("#flashCards").removeClass("rollInLeft");	
+			$("#flashCards").addClass("rollOutRight");
+			
+			console.log(status);
+			
+			if(card>1)
+				requestWord(card-1);
+			
+				
+			setTimeout(function(){
+				$("#flashCards").removeClass("rollOutLeft");
+				$("#flashCards").removeClass("rollOutRight");
+				$("#flashCards").addClass("rollInLeft");
+				if(vocab.hasClass("hideCard"))
+					flipCard("defination");
+			}, 1000);
+			
+			buttonEnable();
+
+		});
+	}
 	
 });

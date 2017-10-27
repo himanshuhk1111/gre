@@ -1,6 +1,7 @@
 package flashCards;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 
 import javax.servlet.ServletException;
@@ -13,6 +14,10 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/StartApp")
 public class StartApp extends HttpServlet {
 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+		System.out.println("in here doget");
+	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		int pageEnd = Integer.parseInt(request.getParameter("pageEnd"));
@@ -28,10 +33,8 @@ public class StartApp extends HttpServlet {
 		sess.setAttribute("done", done);
 		sess.setAttribute("wordCount", 0);
 		sess.setAttribute("pageCount", 0);
-		
+		sess.setAttribute("words", new ArrayList<String>());
 		response.sendRedirect("cards.html");
-		
-		
 	}
 
 }
