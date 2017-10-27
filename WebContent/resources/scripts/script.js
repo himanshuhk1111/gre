@@ -84,7 +84,8 @@ function requestWord(cid){
 		buttonEnable();
 	})
 	.always(function(){
-		console.log("Request Completed")
+		console.log("Request Completed");
+		buttonEnable();
 	});
 }
 
