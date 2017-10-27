@@ -421,7 +421,7 @@ button:hover{
 }
 
 
-@media screen and (max-width: 540px) {
+@media screen and (min-width: 350px) and (max-width: 540px) {
     h1{
     	font-size:25px;
     }
@@ -451,6 +451,39 @@ button:hover{
     	margin-bottom:2px;
     }
 }
+
+@media screen and (max-width: 350px) {
+    h1{
+    	font-size:25px;
+    }
+    
+    h2{
+    	font-size:17px;
+    }
+    h3{
+    	font-size:15px;
+    }
+    
+    h4{
+    	font-size:12px;
+    }
+    .btn{
+		font-size:9px;
+    }
+    .btn-lg{
+		font-size:10px;
+	}
+	.flashCard{
+		width: 95%;
+		padding:5px;
+		padding-bottom:15px;
+    }    
+    #pageNo{
+    	margin-bottom:2px;
+    }
+}
+
+
 
 /* For Tablets */
 @media screen and (min-width: 540px) and (max-width: 750px) {
