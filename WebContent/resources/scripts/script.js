@@ -89,6 +89,50 @@ function requestWord(cid){
 	});
 }
 
+function swipeNext(){
+
+	buttonDisable();		
+	$("#flashCards").removeClass("rollInRight");
+	$("#flashCards").removeClass("rollInLeft");	
+	$("#flashCards").addClass("rollOutLeft");
+	
+	console.log(status);
+	if(status!="false")
+		requestWord(card+1);
+	
+	setTimeout(function(){
+		$("#flashCards").removeClass("rollOutLeft");
+		$("#flashCards").removeClass("rollOutRight");
+		$("#flashCards").addClass("rollInRight");
+		if(vocab.hasClass("hideCard"))
+			flipCard("defination");
+	}, 1000);
+}
+
+function swipePrev(){
+	console.log("prevCard");
+	
+	$("#flashCards").removeClass("rollInRight");
+	$("#flashCards").removeClass("rollInLeft");	
+	$("#flashCards").addClass("rollOutRight");
+	
+	console.log(status);
+	
+	if(card>1)
+	{
+		buttonDisable();
+		requestWord(card-1);
+	}
+		
+	setTimeout(function(){
+		$("#flashCards").removeClass("rollOutLeft");
+		$("#flashCards").removeClass("rollOutRight");
+		$("#flashCards").addClass("rollInLeft");
+		if(vocab.hasClass("hideCard"))
+			flipCard("defination");
+	}, 1000);
+}
+
 $("document").ready(function(){
 	
 	x = location.pathname;
@@ -111,48 +155,33 @@ $("document").ready(function(){
 		});
 		
 		$("#nxtCard").click(function(){
-			buttonDisable();
+			swipeNext();
+		});
+
+		$("body").keypress(function(event){
 			
-			$("#flashCards").removeClass("rollInRight");
-			$("#flashCards").removeClass("rollInLeft");	
-			$("#flashCards").addClass("rollOutLeft");
-			
-			console.log(status);
-			if(status!="false")
-				requestWord(card+1);
-			
-			setTimeout(function(){
-				$("#flashCards").removeClass("rollOutLeft");
-				$("#flashCards").removeClass("rollOutRight");
-				$("#flashCards").addClass("rollInRight");
+			if(event.keyCode==37){
+				swipePrev();
+			}
+			else if(event.keyCode==38||event.keyCode==40){
 				if(vocab.hasClass("hideCard"))
+				{
 					flipCard("defination");
-			}, 1000);
+				}
+				else{
+					
+					flipCard("vocab");
+				}
+			}
+			else if(event.keyCode==39){
+				swipeNext();
+			}
+			
 			
 		});
 
 		$("#prevCard").click(function(){
-			console.log("prevCard");
-			
-			$("#flashCards").removeClass("rollInRight");
-			$("#flashCards").removeClass("rollInLeft");	
-			$("#flashCards").addClass("rollOutRight");
-			
-			console.log(status);
-			
-			if(card>1)
-			{
-				buttonDisable();
-				requestWord(card-1);
-			}
-				
-			setTimeout(function(){
-				$("#flashCards").removeClass("rollOutLeft");
-				$("#flashCards").removeClass("rollOutRight");
-				$("#flashCards").addClass("rollInLeft");
-				if(vocab.hasClass("hideCard"))
-					flipCard("defination");
-			}, 1000);
+			swipePrev();
 		});
 	}
 	
